@@ -9,10 +9,10 @@ public abstract class Poster {
 	}
 
 	protected Cart postings;
-	
+
 	// Put the item up for sale
-	abstract void ForSale(Item item);
+	abstract void ForSale(Object item);
 	
 	// Call when an item is sold
-    abstract void Sell(Item item);
+    abstract void Sell(Object item);
 }

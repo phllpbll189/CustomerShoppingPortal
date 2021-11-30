@@ -1,4 +1,5 @@
-import Item.Item;
+import Item.*;
+import Item.Object;
 
 /*
 	- Customers can post items for sale (from their inventory) and buy items from other customers (to their cart)
@@ -16,13 +17,13 @@ public class Customer extends Poster{
 
 	// Once another customer confirms checkout, update balance and remove from inventory
 	@Override
-	public void Sell(Item item) {
+	public void Sell(Object item) {
 		
 	}
 
 	// Add item from inventory to market, and notify customers it's for sale 
 	@Override
-	public void ForSale(Item item) {
+	public void ForSale(Object item) {
 		
 	}
 

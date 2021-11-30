@@ -1,5 +1,5 @@
 import Item.Item;
 
 public interface Publisher {
-    Item Purchase(double amount);
+    void Purchase(Item item);
 }

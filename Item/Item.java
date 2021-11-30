@@ -7,7 +7,7 @@ package Item;
 public abstract class Item {
     //Name of the tag or of the object
     protected String name;
-
+    
     public Item(String name){
         this.name = name;
     }
