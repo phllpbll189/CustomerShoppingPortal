@@ -1,5 +1,5 @@
-import Item.Item;
+import Item.Component;
 
 public interface Publisher {
-    Item Purchase(double amount);
+    Component Purchase(double amount);
 }
