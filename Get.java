@@ -1,3 +1,5 @@
+import Item.Item;
+
 public interface Get {
-    Item Purchase(double ammount)
+    Item Purchase(double amount);
 }

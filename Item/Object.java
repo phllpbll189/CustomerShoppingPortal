@@ -1,5 +1,6 @@
 package Item;
 
-public class Object implements Item{
+public class Object implements Item {
     
+	
 }

@@ -1,5 +1,5 @@
 package Item;
 
-public class Tag implements Item{
+public class Tag implements Item {
     
 }
