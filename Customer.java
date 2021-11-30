@@ -22,6 +22,11 @@ public class Customer implements Post, Get {
 	@Override
 	public void Sell(Item item) {
 		
+		// Update Customer Balance
+		//balance = balance - Item.price;
+		
+		// Update inventory upon checkout confirmation
+		inventory.removeItem(item);
 	}
 
 	// Add item from inventory to market, and notify customers it's for sale 
