@@ -1,18 +1,25 @@
-import java.security.PrivilegedAction;
-import java.util.ArrayList;
-
 import Item.Item;
 
 public abstract class Poster {
-	Poster(){
+	Poster() {
 		this.postings = new Cart();
 	}
 
 	protected Cart postings;
 
-	// Put the item up for sale
-	abstract void ForSale(Object item);
+	// Put the item up for sale and notify customers
+	abstract void ForSale(Item item);
 	
 	// Call when an item is sold
-    abstract void Sell(Object item);
+    abstract void Sell(Item item);
 }
+
+
+
+/*
+
+AUCTIONEER = BEBAY
+SUBJECT = PUBLISHER
+BIDDER = POSTER
+
+*/
