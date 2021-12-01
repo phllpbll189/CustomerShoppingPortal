@@ -1,5 +1,8 @@
-import Item.Item;
 
 public interface Publisher {
-    void Purchase(Item item);
+    Boolean Purchase(Post item);
+    void newSale(Post item);
+    public void registerObserver(Customer sub);
+    public void deleteSubs(Customer sub);
+    public void updateSubs();
 }

@@ -1,9 +1,10 @@
 package Item;
 import java.util.ArrayList;
-
+import java.util.UUID;
 
 public class Item extends Component {
 	//description and price of an object
+    private final UUID ID;
     private String description;
     private double price;
 
@@ -16,13 +17,24 @@ public class Item extends Component {
         super(name);
         this.description = description;
         this.price = price;
+        //random ID to insure uniqueness among even the same items. AKA 2 controllers of the same model.
+        ID = UUID.randomUUID();
     }
 
-    
-    public void addComponent(Component item) {
-        this.components.add(item);
+    //add component to a package deal
+    public void addComponent(Component component) {
+        this.components.add(component);
     }
 
+    public UUID getID() {
+        return ID;
+    }
+
+
+    //============GETTERS/SETTERS==============//
+    public String getName(){
+        return super.name;
+    }
 
 	public String getDescription() {
 		return description;
@@ -52,6 +64,4 @@ public class Item extends Component {
 	public void setItems(ArrayList<Component> components) {
 		this.components = components;
 	}
-
-    
 }
