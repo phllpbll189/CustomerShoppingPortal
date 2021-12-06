@@ -7,50 +7,68 @@ import Item.Item;
 */
 public class Customer implements Poster{
     private Cart cart = new Cart();
-    private Publisher pub;
     private String username;
-	protected double balance;
+    protected double balance;
     public ArrayList<Post> posts;
 
-	Customer(String user, double balance, Publisher pub){
+    Customer(String user, double balance){
         this.username = user;
         this.balance = balance;
-        this.pub = pub;
     }
-	// Buy item and add to cart
-	public void Purchase(Post post) {
-		if(post.item.getPrice() > balance){
+
+    // See if everything in the users cart is an adequate price
+    public Boolean Purchasable() {
+        if(cart.getPrice() > balance){
             System.out.println("You don't have enough money!");
-            return;
+            return false;
         }
-        if(pub.Purchase(post)){
-            System.out.println("you purchased" + post.item.getName());
-            this.balance = balance - post.item.getPrice();
-            return;
+        return true;
+    }
+
+    //purchase a single item and
+    //let the publisher know the item has been claimed
+    public Boolean Purchase(Post post){
+        //returns true or false based on if the purchase was possible
+
+        double price = post.sold();
+
+        if( price != 0.00 ){
+            System.out.println("you purchased " + post.item.getName());
+            this.balance = balance - price;
+            return true;
         }
-	}
+        return false;
+    }
 
 
-    //Add to cart and puchase all from cart functions
+    //Add to cart and purchase all from cart functions
     public void addToCart(int index){
         if(index <= posts.size()-1){
             Post post = posts.get(index);
             cart.addItem(post);
             System.out.println("added " + post.item.getName() + " to " + username + "'s cart");
         }
-       
+
     }
 
+    //purchases all of the items in the cart
     public void purchaseAllCart(){
+        ArrayList<Post> toPurchase = cart.getCart();
         System.out.println(username + ": buying all from cart");
-        for (Post post : cart.getCart()) {
-            Purchase(post);
+        if(!Purchasable()){
+            return;
         }
-        
+
+        for(int i = 0; i <= toPurchase.size() - 1; i++){
+            if( Purchase(toPurchase.get(i)) ){
+                i--;
+            }
+        }
+
     }
 
     //============================= POSTER OVERRIDES =============================================================================
-   //creates a post to be sent to the publisher
+    //creates a post to be sent to the publisher
     @Override
     public Post ForSale(Item item) {
         System.out.println(username + ": Making a sale");
@@ -69,6 +87,6 @@ public class Customer implements Poster{
     public void update(ArrayList<Post> itemsForSale) {
         System.out.println(username + ": sales updated");
         this.posts = itemsForSale;
-        cart.crossCheck(this.posts);
+        cart.crossCheck(itemsForSale);
     }
 }

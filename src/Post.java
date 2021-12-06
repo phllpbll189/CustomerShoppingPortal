@@ -9,14 +9,24 @@ public class Post {
 
     Poster poster;
     Item item;
+    Bebay bebay;
 
     Post(Poster poster, Item item){
         this.poster = poster;
         this.item = item;
+        this.bebay = Bebay.getInstance();
     }
 
     //lets the poster know his item was sold
-    public void sold(){
-        poster.Sold(item);
+    //also lets the publisher know to delete the product
+    public double sold(){
+        //if it is in the sale list then purchase it
+        //the user has already been checked to see if they have enough money for it
+
+        if(bebay.Purchase(this)){
+            poster.Sold(item);
+            return item.getPrice();
+        }
+        return 0.00;
     }
 }
