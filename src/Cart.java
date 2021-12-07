@@ -21,25 +21,26 @@ public class Cart {
 		cart.remove(item);
 	}
 
-	public void setItems(ArrayList<Post> items) {
-		this.cart = items;
-	}
-
 	//makes sure that cart reflects any changes to the posts in publisher.
 	public void crossCheck(ArrayList<Post> posts) {
 		ArrayList<Post> toRemove = new ArrayList<Post>();
+		
+		// Keep the posts currently within the cart
 		for (Post post : this.cart) {
 			if(posts.contains(post)) {
 				continue;
-			} else {
+			} else { 
 				toRemove.add(post);
 			}
 		}
+		// Any posts not within the cart remove
 		for (Post post: toRemove) {
 			this.cart.remove(post);
 		}
 	}
 
+	/* ---- Setters and Getters ---- */
+	
 	public double getPrice() {
 		int temp = 0;
 		for (Post post:
@@ -53,4 +54,7 @@ public class Cart {
 		return cart;
 	}
 
+	public void setItems(ArrayList<Post> items) {
+		this.cart = items;
+	}
 }

@@ -8,6 +8,7 @@ Due Date:  12/6/2021 @ 11:59PM
 
 package Item;
 
+// Component is the base interface for all objects in the composition
 public abstract class Component {
 	
     //Name of the tag or of the object

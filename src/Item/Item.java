@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /* ---- COMPOSITE PATTERN ---- */
+
+// Item is the composite class since it holds a collection of Components
 public class Item extends Component {
 	//description and price of an object
     private final UUID ID;
@@ -35,11 +37,23 @@ public class Item extends Component {
     public void addComponent(Component component) {
         this.components.add(component);
     }
-
-    public UUID getID() {
-        return ID;
-    }
-
+    
+    // Loop through all components of an item and print it's tags and items
+    public void iterateComponents(ArrayList<Component> components) {
+		if (components.isEmpty()) {
+			return;
+		}
+		
+		for (Component component : components) {
+			if (component instanceof Tag) {
+				System.out.println(super.name + " has the tag: " + component.name);
+			}
+			else {
+				System.out.println("Item Name is: " + component.name);
+				iterateComponents(components);
+			}
+		}
+	}
 
     // --------- GETTERS AND SETTERS --------- //
     public String getName() {
@@ -57,6 +71,10 @@ public class Item extends Component {
 	public double getPrice() {
 		return price;
 	}
+	
+    public UUID getID() {
+        return ID;
+    }
 
 	public void setPrice(double price) {
 		this.price = price;
@@ -70,19 +88,4 @@ public class Item extends Component {
 		this.components = components;
 	}
 	
-	public void iterateComponents(ArrayList<Component> components) {
-		if (components.isEmpty()) {
-			return;
-		}
-		
-		for (Component component : components) {
-			if (component instanceof Tag) {
-				System.out.println(super.name + " has the tag: " + component.name);
-			}
-			else {
-				System.out.println("Item Name is: " + component.name);
-				iterateComponents(components);
-			}
-		}
-	}
 }

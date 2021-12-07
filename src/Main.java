@@ -16,7 +16,7 @@ public class Main {
         //create seller
         Poster Amazon = new Customer("Amazon", 20000); 
 
-        //create customer
+        // Create customers
         Customer phil = new Customer("Phil", 2000);
         Customer zach = new Customer("Zach", 5000);
         

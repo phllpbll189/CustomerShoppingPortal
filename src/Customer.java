@@ -11,19 +11,23 @@ import Item.Item;
 
 public class Customer implements Poster {
 	
+	// List of items for sale managed by Publisher
     public ArrayList<Post> posts;
 
+    // Customers items to purchase 
     private Cart cart = new Cart();
     private String username;
-    
+ 
     protected double balance;
 
+    // Constructor
     Customer(String user, double balance){
         this.username = user;
         this.balance = balance;
     }
 
     // See if everything in the users cart is an adequate price
+    // Returns true if customer has the funds to purchase item
     public Boolean Purchasable() {
         if (cart.getPrice() > balance){
             System.out.println("You don't have enough money!");
@@ -32,8 +36,8 @@ public class Customer implements Poster {
         return true;
     }
 
-    // Purchase a single item and let the publisher know the item has been claimed
     // Returns true or false based on if the purchase was possible
+    // Purchase a single item and update customer funds. Publisher updates the carts
     public Boolean Purchase(Post post) {
 
         double price = post.sold();
@@ -56,18 +60,22 @@ public class Customer implements Poster {
 
     }
 
-    // Purchases all of the items in the cart
+    // Purchases all of the items in the cart if the user has the funds
     public void purchaseAllCart(){
         ArrayList<Post> toPurchase = cart.getCart();
+        
+        // Check user's funds
         if (!Purchasable()){
             return;
         }
 
+        // Loop through the purchased items
         for(int i = 0; i <= toPurchase.size() - 1; i++){
             Post temp = toPurchase.get(i);
             System.out.println(username + " bought: " + temp.item.getName());
+            // If if user has funds
             if (Purchase(temp)){
-
+            	// Keep looping through the collection if theres multiple items
                 if ((temp instanceof PPost && ((PPost) temp).count <= 1) || temp instanceof SPost){
                     i--;
                 }
@@ -81,12 +89,12 @@ public class Customer implements Poster {
     // Creates a post to be sent to the publisher
     @Override
     public Post ForSale(Item item, int count) {
-        System.out.println(username + ": Making a large sale");
+        System.out.println(username + ": Making a large offer");
         return new PPost(this, item, count);
     }
 
     public Post ForSale(Item item) {
-        System.out.println(username + ": Making a sale");
+        System.out.println(username + ": Making a new offer");
         return new SPost(this, item);
     }
 
@@ -99,6 +107,7 @@ public class Customer implements Poster {
     }
 
     // Everytime there is a new post this is called
+    // Updates customer's posts
     public void update(ArrayList<Post> itemsForSale) {
         this.posts = itemsForSale;
         cart.crossCheck(itemsForSale);
