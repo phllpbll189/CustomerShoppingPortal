@@ -33,7 +33,6 @@ public class Customer implements Poster{
         double price = post.sold();
 
         if( price != 0.00 ){
-            System.out.println("you purchased " + post.item.getName());
             this.balance = balance - price;
             return true;
         }
@@ -54,14 +53,18 @@ public class Customer implements Poster{
     //purchases all of the items in the cart
     public void purchaseAllCart(){
         ArrayList<Post> toPurchase = cart.getCart();
-        System.out.println(username + ": buying all from cart");
         if(!Purchasable()){
             return;
         }
 
         for(int i = 0; i <= toPurchase.size() - 1; i++){
-            if( Purchase(toPurchase.get(i)) ){
-                i--;
+            Post temp = toPurchase.get(i);
+            System.out.println(username + " bought: " + temp.item.getName());
+            if(Purchase(temp)){
+
+                if((temp instanceof PPost && ((PPost) temp).count <= 1) || temp instanceof SPost){
+                    i--;
+                }
             }
         }
 
@@ -70,9 +73,14 @@ public class Customer implements Poster{
     //============================= POSTER OVERRIDES =============================================================================
     //creates a post to be sent to the publisher
     @Override
-    public Post ForSale(Item item) {
+    public Post ForSale(Item item, int count) {
+        System.out.println(username + ": Making a large sale");
+        return new PPost(this, item, count);
+    }
+
+    public Post ForSale(Item item){
         System.out.println(username + ": Making a sale");
-        return new Post(this, item);
+        return new SPost(this, item);
     }
 
     //if our item was sold then this will be called
@@ -80,12 +88,11 @@ public class Customer implements Poster{
     public void Sold(Item item) {
         //sell the item
         this.balance += item.getPrice();
-        System.out.print(username + ": your item " + item.getName() + " was sold\nYour balance is now: " + balance +"\n");
+        System.out.print(username + ": your item " + item.getName() + " was sold\nYour balance is now: " + balance +"\n\n");
     }
 
     //everytime there is a new post this is called
     public void update(ArrayList<Post> itemsForSale) {
-        System.out.println(username + ": sales updated");
         this.posts = itemsForSale;
         cart.crossCheck(itemsForSale);
     }

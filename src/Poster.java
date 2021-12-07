@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public interface Poster {
 	// Put the item up for sale and notify customers
+	abstract Post ForSale(Item item, int count);
 	abstract Post ForSale(Item item);
 
 	// Call when an item is sold

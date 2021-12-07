@@ -21,12 +21,15 @@ public class Bebay implements Publisher{
     public Boolean Purchase(Post item) {
 
         //if its not in the list it returns false
-        Boolean temp = this.itemsForSale.remove(item);
-        if(temp){
-            updateSubs();
+        if(item instanceof SPost || ((PPost) item).count == 1){
+            Boolean temp = this.itemsForSale.remove(item);
+            if(temp){
+                updateSubs();
+            }
+            return temp;
         }
-
-        return temp;
+        ((PPost) item).count = ((PPost) item).count - 1;
+        return true;
     }
 
     //this is effectively logging someone in. May need to add functionality here later for
@@ -47,6 +50,7 @@ public class Bebay implements Publisher{
     //the list of items to sell
     @Override
     public void updateSubs() {
+        System.out.println("\nPublisher: updating customers\n");
         for (Poster customer : CustomerList) {
             customer.update(itemsForSale);
         }

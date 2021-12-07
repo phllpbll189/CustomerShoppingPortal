@@ -24,7 +24,6 @@ public class Cart {
 			if(posts.contains(post)){
 				continue;
 			}else{
-				System.out.println("Someone bought my item " + post.item.getName());
 				toRemove.add(post);
 			}
 		}
