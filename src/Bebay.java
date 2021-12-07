@@ -1,3 +1,12 @@
+/*
+Author: Phil Bell and Zachary Jones (Phil did most of the Bebay file. He completed the Singleton Pattern, and the Publisher portion of Observer, but there 
+was a lot of back and forth discussion with how to tackle Bebay correctly.) 
+Class: CSI-340-01 
+Assignment:  Final Project
+Date Assigned: 11/22 
+Due Date:  12/6/2021 @ 11:59PM 
+*/
+
 import java.util.ArrayList;
 
 public class Bebay implements Publisher{
@@ -7,9 +16,8 @@ public class Bebay implements Publisher{
     private ArrayList<Poster> CustomerList = new ArrayList<Poster>();
     private ArrayList<Post> itemsForSale = new ArrayList<Post>();
     private static Bebay bebay;
-    //inform user that there item was sold
-    //remove the item
-    //update subs
+
+    /* ---- SINGLETON PATTERN ---- */
     public static Bebay getInstance(){
         if(bebay == null){
             bebay = new Bebay();
@@ -20,15 +28,18 @@ public class Bebay implements Publisher{
     @Override
     public Boolean Purchase(Post item) {
 
-        //if its not in the list it returns false
-        if(item instanceof SPost || ((PPost) item).count == 1){
+        // If its not in the list it returns false
+        if (item instanceof SPost || ((PPost) item).count == 1) {
             Boolean temp = this.itemsForSale.remove(item);
-            if(temp){
+            if (temp) {
                 updateSubs();
             }
+            
             return temp;
         }
+        
         ((PPost) item).count = ((PPost) item).count - 1;
+        
         return true;
     }
 
@@ -56,8 +67,8 @@ public class Bebay implements Publisher{
         }
     }
 
-    //add a new item to the list of items to sell in the form of a post
-    //update all users when done
+    // Add a new item to the list of items to sell in the form of a post
+    // Update all users when done
     @Override
     public void newSale(Post item) {
         System.out.println("Publisher: added " + item.item.getName() + " to the sale list");

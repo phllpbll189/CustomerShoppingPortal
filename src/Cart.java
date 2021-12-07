@@ -1,3 +1,11 @@
+/*
+Author: Zachary Jones and Phil Bell (We mostly worked on Cart together. Phil completed crossCheck() method.)
+Class: CSI-340-01 
+Assignment:  Final Project
+Date Assigned: 11/22 
+Due Date:  12/6/2021 @ 11:59PM 
+*/
+
 import java.util.ArrayList;
 
 public class Cart {
@@ -21,9 +29,9 @@ public class Cart {
 	public void crossCheck(ArrayList<Post> posts) {
 		ArrayList<Post> toRemove = new ArrayList<Post>();
 		for (Post post : this.cart) {
-			if(posts.contains(post)){
+			if(posts.contains(post)) {
 				continue;
-			}else{
+			} else {
 				toRemove.add(post);
 			}
 		}
@@ -32,7 +40,7 @@ public class Cart {
 		}
 	}
 
-	public double getPrice(){
+	public double getPrice() {
 		int temp = 0;
 		for (Post post:
 				cart) {
