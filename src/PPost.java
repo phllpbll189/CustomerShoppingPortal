@@ -1,3 +1,11 @@
+/*
+Author: Phil Bell (Responsible for Strategy Pattern) 
+Class: CSI-340-01 
+Assignment:  Final Project
+Date Assigned: 11/22 
+Due Date:  12/6/2021 @ 11:59PM 
+*/
+
 import Item.Item;
 
 public class PPost extends Post {
@@ -28,3 +36,4 @@ public class PPost extends Post {
         return 0.00;
     }
 }
+
