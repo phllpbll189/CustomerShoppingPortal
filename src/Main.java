@@ -41,16 +41,19 @@ public class Main {
         earbuds.iterateComponents(earbuds.getComponents());
         System.out.println("Earbud description: " + earbuds.getDescription());
         System.out.println("");
-
+        
         // Register observers to be notified of updates
         bebay.registerObserver(phil);
         bebay.registerObserver(zach);
 
-        //update all users and publisher that a new item is up for sale.
+        
         bebay.newSale(Amazon.ForSale(skateboard));
         bebay.newSale(Amazon.ForSale(earbuds, 34));
+        
+        //update all users and publisher that a new item is up for sale.
         phil.addToCart(0);
         zach.addToCart(0);
+        
 
         phil.addToCart(1);
         zach.addToCart(1);

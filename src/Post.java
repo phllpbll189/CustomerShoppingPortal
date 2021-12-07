@@ -12,5 +12,6 @@ import Item.Item;
 // There are two different 'strategies' for Posts, each implementing sold() differently
 public abstract class Post {
     Item item;
+    Poster poster;
     abstract double sold();
 }

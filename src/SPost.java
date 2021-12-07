@@ -12,13 +12,11 @@ public class SPost extends Post {
     /*
     This allows us to keep track of the original poster and the Item in which he is selling
     */
-
-    Poster poster;
     Bebay bebay;
 
     SPost(Poster poster, Item item){
         super.item = item;
-        this.poster = poster;
+        super.poster = poster;
         this.bebay = Bebay.getInstance();
     }
 

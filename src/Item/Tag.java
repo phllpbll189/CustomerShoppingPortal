@@ -10,7 +10,6 @@ package Item;
 
 public class Tag extends Component {
 
-	// Constructor that only takes a categoryical description
     public Tag(String category){
         super(category);
     }
