@@ -22,8 +22,9 @@ public class Item extends Component {
     }
 
     //add component to a package deal
-    public void addComponent(Component component) {
+    public Item addComponent(Component component) {
         this.components.add(component);
+        return this;
     }
 
     public UUID getID() {
@@ -64,4 +65,13 @@ public class Item extends Component {
 	public void setItems(ArrayList<Component> components) {
 		this.components = components;
 	}
+
+    @Override
+    public void printComponents() {
+        for (Component component:
+             components) {
+            if(component instanceof Item){System.out.println("\tItem: " + component.name);}
+            component.printComponents();
+        }
+    }
 }

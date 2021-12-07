@@ -6,4 +6,9 @@ public class Tag extends Component {
         super(category);
     }
 
+    @Override
+    public void printComponents() {
+        System.out.println("\tTag: " + super.name);
+    }
+
 }

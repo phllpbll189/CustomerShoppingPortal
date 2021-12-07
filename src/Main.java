@@ -15,12 +15,13 @@ public class Main {
         bebay.registerObserver(john);
 
         //update all users and publisher that a new item is up for sale.
-        Tag electronic = new Tag("electronic");
-        Item skateBoard = new Item("earbuds", "Makes sound", 150.00);
-        skateBoard.addComponent(electronic);
+        Item earbuds = new Item("earbuds", "Makes sound", 150.00);
+        earbuds.addComponent(new Tag("electronic"))
+                .addComponent(new Tag("wireless"))
+                .addComponent(new Tag("blutooth"));
 
         bebay.newSale(Amazon.ForSale(new Item("SkateBoard", "A piece of wood with 4 wheels", 100.00)));
-        bebay.newSale(Amazon.ForSale(skateBoard, 34));
+        bebay.newSale(Amazon.ForSale(earbuds, 34));
         phil.addToCart(0);
         john.addToCart(0);
 

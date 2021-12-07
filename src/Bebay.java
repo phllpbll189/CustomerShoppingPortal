@@ -60,7 +60,9 @@ public class Bebay implements Publisher{
     @Override
     public void newSale(Post item) {
         System.out.println("Publisher: added " + item.item.getName() + " to the sale list");
+        item.item.printComponents();
         this.itemsForSale.add(item);
         updateSubs();
+
     }
 }

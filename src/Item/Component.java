@@ -14,5 +14,7 @@ public abstract class Component {
     public Component(String name) {
         this.name = name;
     }
+
+    abstract public void printComponents();
     
 }
