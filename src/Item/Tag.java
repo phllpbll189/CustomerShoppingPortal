@@ -2,7 +2,7 @@ package Item;
 
 public class Tag extends Component {
 
-    Tag(String category){
+    public Tag(String category){
         super(category);
     }
 
