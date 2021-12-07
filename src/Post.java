@@ -1,5 +1,3 @@
-
-
 import Item.Item;
 
 public class Post {

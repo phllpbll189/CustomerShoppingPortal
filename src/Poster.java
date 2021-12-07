@@ -12,12 +12,7 @@ public interface Poster {
 	void update(ArrayList<Post> itemsForSale);
 }
 
-
-
 /*
-
 AUCTIONEER = BEBAY
 SUBJECT = PUBLISHER
-BIDDER = POSTER
-
 */

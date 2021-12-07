@@ -6,7 +6,7 @@ public class Main {
         Publisher bebay = Bebay.getInstance();
 
         //create seller
-        Poster Amazon = new Customer("Amazon", 20000);
+        Poster Amazon = new Customer("Amazon", 20000); 
 
         //create customer
         Customer phil = new Customer("Phil", 2000);
