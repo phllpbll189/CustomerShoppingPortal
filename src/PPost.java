@@ -22,6 +22,7 @@ public class PPost extends Post {
         //the user has already been checked to see if they have enough money for it
         if(bebay.Purchase(this)){
             poster.Sold(item);
+            this.count -= 1;
             return item.getPrice();
         }
         return 0.00;

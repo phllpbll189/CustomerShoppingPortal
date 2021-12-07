@@ -28,7 +28,6 @@ public class Bebay implements Publisher{
             }
             return temp;
         }
-        ((PPost) item).count = ((PPost) item).count - 1;
         return true;
     }
 
